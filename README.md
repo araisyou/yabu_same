@@ -1,83 +1,76 @@
-VR流鏑馬（やぶさめ）ゲーム（Unity / OpenXR）
+# VR流鏑馬（やぶさめ）ゲーム（Unity / OpenXR）
 
-VRで流鏑馬（馬上から弓矢を放つ）を体験できるミニゲームです。
-弓に矢をつがえ、引き、放つまでをVRコントローラー操作で行い、実際に射っているような操作感を目指しました。
+VRで流鏑馬（馬上から弓矢を放つ）を体験できるミニゲームです。  
+**弓に矢をつがえ、引き、放つ**までをVRコントローラー操作で行い、実際に射っているような操作感を目指しました。
 
-デモの流れ（遊び方）
+---
 
-ゲーム開始後、目の前にある看板を弓で射ってください
+## デモの流れ（遊び方）
 
-看板に当たるとイベントが発火し、馬が走り出します
+1. ゲーム開始後、目の前にある**看板**を弓で射ってください  
+2. 看板に当たるとイベントが発火し、**ウマが走り出します**
 
-走行中に的を狙って射撃します（スコアや的の種類は必要に応じて追記）
+---
 
-操作方法（VRコントローラー）
+## 操作方法（VRコントローラー）
 
-矢をつがえる：左右のハンドコントローラーを重ねる（弓に矢を装填）
+- **矢をつがえる**：左右のハンドコントローラーを重ねる（弓に矢を装填）
+- **弓を引く**：右のハンドコントローラーのボタンを押しながら、右手コントローラーを離す（弓を引っ張る）
+- **発射**：右のボタンを離す
 
-弓を引く：右手コントローラーのボタンを押しながら、右手を離す（弓を引く動作）
+---
 
-発射：右手のボタンを離す
+## セットアップ（Unity / OpenXR）
 
-※ボタンの種類（Trigger / Grip など）を明記したい場合は、実装に合わせて追記してください。
+### 1. XR Plug-in Management を有効化
 
-セットアップ（Unity / OpenXR）
-1. XR Plug-in Management を有効化
+1. `Edit > Project Settings > XR Plug-in Management` をインストール
+2. `XR Plug-in Management > OpenXR` にチェックを付ける
+3. `XR Plug-in Management > OpenXR` を再度選択し、`Enabled Interaction Profiles` の **「＋」** を押して **HTC Vive Controller Profile** を追加
 
-Edit > Project Settings > XR Plug-in Management をインストール
+---
 
-XR Plug-in Management > OpenXR にチェックを付ける
+### 2. XR Interaction Toolkit を導入
 
-XR Plug-in Management > OpenXR を再度選択し、
-Enabled Interaction Profiles の 「＋」 から HTC Vive Controller Profile を追加
+1. `Window > Package Manager` を開く
+2. `Unity Registry > XR Interaction Toolkit` をインストール
+3. `Samples > Starter Assets` を **Import**
 
-2. XR Interaction Toolkit を導入
+---
 
-Window > Package Manager を開く
+### 3. Project Validation を Fix
 
-Unity Registry > XR Interaction Toolkit をインストール
+1. `XR Plug-in Management > Project Validation` を選択
+2. **Fix All** を押す
+3. しばらく待つと警告メッセージが消える
 
-Samples > Starter Assets を Import
+---
 
-3. Project Validation を Fix
+### 4. XR Rig をシーンへ追加
 
-XR Plug-in Management > Project Validation を開く
+1. `Hierarchy` に以下Prefabを追加  
+   - `Assets/Samples/XR Interaction Toolkit/3.0.3/Starter Assets/Prefabs/XR Origin (XR Rig).prefab`
+2. `XR Origin (XR Rig).prefab` の子オブジェクトのうち不要なものはチェックを外して **非アクティブ** にしておく
+3. `/MainCamera` のチェックを外す（非アクティブ）
 
-Fix All を押す
+---
 
-しばらく待ち、警告メッセージが消えることを確認
+## ゲーム開始方法
 
-4. XR Rig をシーンへ追加
+- ゲームがスタートしたら、目の前にある**看板**を弓で打ってください  
+- 命中すると**ウマが走り出します**
 
-Hierarchy に以下Prefabを追加
+---
 
-Assets/Samples/XR Interaction Toolkit/3.0.3/Starter Assets/Prefabs/XR Origin (XR Rig).prefab
+## こだわりポイント
 
-XR Origin (XR Rig) の子オブジェクトで不要なものはチェックを外して 非アクティブ にする
+- **実際に矢を打っているような操作感**を実現しました
 
-MainCamera のチェックを外す（非アクティブ）
+---
 
-こだわりポイント
+## 動作環境（必要なら追記）
 
-矢をつがえる → 引く → 放つの一連動作をVR操作として成立させ、
-**「実際に矢を射っているような操作感」**を重視して設計しました。
-
-動作環境（例）
-
-Unity：（例）2022.3 LTS
-
-XR：OpenXR
-
-Interaction：XR Interaction Toolkit
-
-Controller Profile：HTC Vive Controller Profile
-
-※Unityバージョンや実機（Vive / Index / Quest Linkなど）を確定しているなら、ここを具体化すると強いです。
-
-注意事項 / 既知の問題（必要なら）
-
-（例）初回起動時にOpenXR周りの警告が出る場合は Project Validation > Fix All を再実行してください
-
-（例）コントローラー割り当てが環境で異なる場合があります
-
-ライセンス
+- Unity：2022.3 LTS（例）
+- XR：OpenXR
+- XR Interaction Toolkit：3.x
+- Interaction Profile：HTC Vive Controller Profile
